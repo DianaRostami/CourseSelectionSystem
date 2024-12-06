@@ -37,6 +37,19 @@
                             name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        <div class="mt-4">
+            <x-input-label for="role_id" :value="__('Role')" />
+
+            <select id="role_id" name="role_id" class="block mt-1 w-full">
+                @foreach($roles as $role)
+                    <option value="{{ $role->id }}">
+                        {{ $role->name }}
+                    </option>
+                @endforeach
+            </select>
+
+        </div>
+
         </div>
 
         <div class="flex items-center justify-end mt-4">
