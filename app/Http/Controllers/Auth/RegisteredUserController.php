@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role_id' => ['required', 'integer', 'exists:roles,id']
         ]);
@@ -50,6 +50,11 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return match ($user->role_id) {
+            1 => redirect()->route('dashboard.student'),
+            2 => redirect()->route('dashboard.teacher'),
+            3 => redirect()->route('dashboard.employee'),
+            default => redirect()->route('dashboard.default'),
+        };
     }
 }

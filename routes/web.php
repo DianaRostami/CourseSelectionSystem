@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +21,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route::get('/dashboard/student', function (){
+//    return view('dashboard.student');
+//    })->name('dashboard.student');
+//
+//Route::get('/dashboard/teacher', function (){
+//    return view('dashboard.teacher');
+//})->name('dashboard.teacher');
+//
+//Route::get('/dashboard/employee', function (){
+//    return view('dashboard.employee');
+//})->name('dashboard.employee');
+
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return view();
+})->middleware(['auth', 'verified']);
+
+Route::middleware(['auth'])->prefix('dashboard')->group(function () {
+    Route::get('/student', [DashboardController::class, 'student'])->name('dashboard.student');
+    Route::get('/teacher', [DashboardController::class, 'teacher'])->name('dashboard.teacher');
+    Route::get('/employee', [DashboardController::class, 'employee'])->name('dashboard.employee');
+    Route::get('/default', [DashboardController::class, 'default'])->name('dashboard.default');
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
