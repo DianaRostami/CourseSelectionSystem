@@ -18,25 +18,25 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-//    public const HOME = '/dashboard';
-    public static function home()
-    {
-        $user = Auth::user();
+    public const HOME = '/dashboard';
+//    public static function home()
+//    {
+//        $user = Auth::user();
 //        if (!$user) {
 //            return '/dashboard/default';
 //        }
-
-        switch ($user->role_id) {
-            case 1:
-                return route('dashboard.student');
-            case 2:
-                return route('dashboard.teacher');
-            case 3:
-                return route('dashboard.employee');
-            default:
-                return route('dashboard.default');
-        }
-    }
+//
+//        switch ($user->role_id) {
+//            case 1:
+//                return route('dashboard.student');
+//            case 2:
+//                return route('dashboard.teacher');
+//            case 3:
+//                return route('dashboard.employee');
+//            default:
+//                return route('dashboard.default');
+//        }
+//    }
 
 
     /**

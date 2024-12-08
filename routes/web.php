@@ -32,10 +32,10 @@ Route::get('/', function () {
 //Route::get('/dashboard/employee', function (){
 //    return view('dashboard.employee');
 //})->name('dashboard.employee');
-
-Route::get('/dashboard', function () {
-    return view();
-})->middleware(['auth', 'verified']);
+//
+Route::get('dashboard/test', function () {
+    return view('dashboard.student');
+})->middleware(['auth']);
 
 Route::middleware(['auth'])->prefix('dashboard')->group(function () {
     Route::get('/student', [DashboardController::class, 'student'])->name('dashboard.student');
