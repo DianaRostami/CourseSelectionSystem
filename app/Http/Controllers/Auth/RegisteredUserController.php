@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
+//        dd($user->role_id);
         return match ($user->role_id) {
             1 => redirect()->route('dashboard.student'),
             2 => redirect()->route('dashboard.teacher'),

@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $user = Auth::user();
-
+//        dd($user->role_id);
         return match ($user->role_id) {
             1 => redirect()->route('dashboard.student'),
             2 => redirect()->route('dashboard.teacher'),

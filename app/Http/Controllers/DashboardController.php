@@ -8,6 +8,7 @@ class DashboardController extends Controller
 {
     public function student()
     {
+        //dd
         return view('dashboard.student');
     }
 
